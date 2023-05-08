@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">RoomDatabaseWithFlow</string>
+    <string name="app_name">Machine Task</string>
+    <string name="live">Live</string>
+    <string name="enter_name">Enter the room name</string>
+    <string name="create">Create</string>
+    <string name="cancel">Cancel</string>
 </resources>

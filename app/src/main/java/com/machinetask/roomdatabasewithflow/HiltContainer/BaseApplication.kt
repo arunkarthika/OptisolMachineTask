@@ -1,4 +1,4 @@
-package com.codingwithjks.roomdatabasewithflow.HiltContainer
+package com.machinetask.roomdatabasewithflow.HiltContainer
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

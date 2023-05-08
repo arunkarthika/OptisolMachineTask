@@ -1,4 +1,4 @@
-package com.codingwithjks.roomdatabasewithflow
+package com.machinetask.roomdatabasewithflow
 
 import org.junit.Test
 
