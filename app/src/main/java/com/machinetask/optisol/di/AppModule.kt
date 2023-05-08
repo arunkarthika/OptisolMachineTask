@@ -1,10 +1,10 @@
-package com.machinetask.roomdatabasewithflow.di
+package com.machinetask.optisol.di
 
 import android.content.Context
 import androidx.room.Room
-import com.machinetask.roomdatabasewithflow.Dao.FeedDao
-import com.machinetask.roomdatabasewithflow.Database.FeedDatabase
-import com.machinetask.roomdatabasewithflow.Repository.FeedRepository
+import com.machinetask.optisol.Dao.FeedDao
+import com.machinetask.optisol.Database.FeedDatabase
+import com.machinetask.optisol.Repository.FeedRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

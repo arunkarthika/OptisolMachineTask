@@ -1,4 +1,4 @@
-package com.machinetask.roomdatabasewithflow
+package com.machinetask.optisol
 
 import org.junit.Test
 

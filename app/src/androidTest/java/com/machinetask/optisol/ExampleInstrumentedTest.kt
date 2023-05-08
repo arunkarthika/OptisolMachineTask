@@ -1,4 +1,4 @@
-package com.machinetask.roomdatabasewithflow
+package com.machinetask.optisol
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

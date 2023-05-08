@@ -1,4 +1,4 @@
-package com.machinetask.roomdatabasewithflow.view
+package com.machinetask.optisol.view.Fragment
 
 import android.os.Bundle
 import android.text.TextUtils
@@ -8,17 +8,18 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.machinetask.roomdatabasewithflow.Model.Feed
-import com.machinetask.roomdatabasewithflow.ViewModel.UserViewModel
-import com.machinetask.roomdatabasewithflow.databinding.DialogAddBinding
+import com.machinetask.optisol.Model.Feed
+import com.machinetask.optisol.ViewModel.FeedViewModel
+import com.machinetask.optisol.databinding.DialogAddBinding
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
+import java.time.OffsetDateTime
+import java.time.ZoneOffset
 
 
 @AndroidEntryPoint
 class BottomDialogFragment() : BottomSheetDialogFragment() {
     private lateinit var binding: DialogAddBinding
-    private lateinit var userViewModel: UserViewModel
+    private lateinit var userViewModel: FeedViewModel
     var feedData: Feed? = null
 
 
@@ -42,7 +43,7 @@ class BottomDialogFragment() : BottomSheetDialogFragment() {
     ): View? {
 
 
-        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
+        userViewModel = ViewModelProvider(this)[FeedViewModel::class.java]
 
         binding = DialogAddBinding.inflate(layoutInflater)
 
@@ -51,6 +52,7 @@ class BottomDialogFragment() : BottomSheetDialogFragment() {
         binding.checkboxLive.isChecked
         if (feedData?.name != null) {
             binding.btnCreate.text = "Edit"
+            binding.etFeedName.isEnabled=false
         }
 
         binding.btnCreate.setOnClickListener {
@@ -65,18 +67,25 @@ class BottomDialogFragment() : BottomSheetDialogFragment() {
     private fun setUserData() {
         val getName = binding.etFeedName.text.toString().trim()
         if (!TextUtils.isEmpty(getName)) {
+
+            val utcDateTimeString = OffsetDateTime.now(ZoneOffset.UTC)
+            println("UTC Date and Time: $utcDateTimeString")
+
             val user = Feed(
-                getName,
-                binding.checkboxLive.isChecked,
-                dateTime = Calendar.getInstance().getTime().toString()
+                name = getName,
+                isLive = binding.checkboxLive.isChecked,
+                dateTime = utcDateTimeString.toString()
             )
             if (feedData?.name!=null){
                 userViewModel.update(
-                    Feed(  getName,
+                    Feed(feedData!!.id,getName,
                         binding.checkboxLive.isChecked,feedData!!.dateTime)
                 )
+                dismiss()
+
             }else{
                 userViewModel.insert(user)
+                dismiss()
             }
         } else {
             Toast.makeText(context, "Please fill all the fields", Toast.LENGTH_SHORT).show()

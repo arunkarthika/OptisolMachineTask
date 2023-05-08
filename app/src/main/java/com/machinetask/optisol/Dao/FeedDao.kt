@@ -1,7 +1,7 @@
-package com.machinetask.roomdatabasewithflow.Dao
+package com.machinetask.optisol.Dao
 
 import androidx.room.*
-import com.machinetask.roomdatabasewithflow.Model.Feed
+import com.machinetask.optisol.Model.Feed
 import kotlinx.coroutines.flow.Flow
 
 @Dao
